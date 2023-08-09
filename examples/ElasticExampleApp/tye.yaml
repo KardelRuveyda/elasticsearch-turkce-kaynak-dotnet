@@ -1,0 +1,23 @@
+# tye application configuration file
+# read all about it at https://github.com/dotnet/tye
+#
+# when you've given us a try, we'd love to know what you think:
+#    https://aka.ms/AA7q20u
+#
+# define global settings here
+# name: exampleapp # application name
+# registry: exampleuser # dockerhub username or container registry hostname
+
+# define multiple services here
+containerEngine: docker
+# registry: localhost:5000
+extensions:
+  - name: elastic
+    logPath: ./.elasticdata
+services:
+  - name: backend
+    project: ./ElasticExampleApp.csproj
+    bindings:
+      - protocol: https
+        port: 11000
+        connectionString: ${protocol}://${host}:${port}
